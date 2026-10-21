@@ -1,0 +1,16 @@
+model:
+  pretrained_model: "nvidia/nemotron-3.5-asr-streaming-0.6b"
+  sample_rate: 16000
+
+data:
+  train_manifest: "./data/train_manifest.json"
+  val_manifest: "./data/val_manifest.json"
+  batch_size: 4
+  num_workers: 2
+
+trainer:
+  accelerator: "gpu"
+  devices: 1
+  precision: 16
+  max_epochs: 5
+  accumulate_grad_batches: 4
