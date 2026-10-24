@@ -4,7 +4,7 @@ import torch
 import pytorch_lightning as pl
 from omegaconf import OmegaConf
 import nemo.collections.asr as nemo_asr
-from src.engram import DeepSeekEngram
+from engram import DeepSeekEngram
 
 def main():
     parser = argparse.ArgumentParser()

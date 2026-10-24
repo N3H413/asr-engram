@@ -2,6 +2,7 @@ import argparse
 import os
 import json
 import soundfile as sf
+import librosa
 from datasets import load_dataset
 
 def main():
@@ -30,10 +31,20 @@ def main():
     print(f"Processing and writing up to {args.max_hours} hours of audio...")
     with open(manifest_path, "w", encoding="utf-8") as f_out:
         for idx, item in enumerate(dataset):
-            audio_data = item["audio"]
+            audio_data = item.get("audio")
+            if not audio_data:
+                continue
+                
             audio_array = audio_data["array"]
             sr = audio_data["sampling_rate"]
-            text = item.get("text", item.get("sentence", ""))
+            
+            # Ensure 16kHz sample rate for NeMo compatibility
+            if sr != 16000:
+                audio_array = librosa.resample(audio_array, orig_sr=sr, target_sr=16000)
+                sr = 16000
+
+            # Correctly map Google FLEURS transcription keys
+            text = item.get("transcription", item.get("raw_transcription", ""))
 
             if not text.strip():
                 continue
