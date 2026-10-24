@@ -6,10 +6,10 @@ from datasets import load_dataset
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_name", type=str, default="ai4bharat/kathbath")
-    parser.add_argument("--subset", type=str, default="hi")
+    parser.add_argument("--dataset_name", type=str, default="google/fleurs")
+    parser.add_argument("--subset", type=str, default="hi_in")
     parser.add_argument("--split", type=str, default="train")
-    parser.add_argument("--max_hours", type=float, default=10.0)
+    parser.add_argument("--max_hours", type=float, default=5.0)
     parser.add_argument("--output_dir", type=str, default="./data")
     args = parser.parse_args()
 

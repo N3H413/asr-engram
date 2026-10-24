@@ -13,7 +13,7 @@ def generate_idf():
 
     print("Loading Hindi text data for frequency counting...")
     # Load a text slice from Kathbath or Common Voice transcriptions
-    dataset = load_dataset("ai4bharat/kathbath", "hi", split="train", streaming=True)
+    dataset = load_dataset("google/fleurs", "hi_in", split="train", streaming=True)
 
     token_counts = Counter()
     total_docs = 0
